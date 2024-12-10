@@ -4,14 +4,12 @@ import {View, Text, StyleSheet, FlatList} from 'react-native';
 const ResultScreen = ({route}: {route: any}) => {
   const {billItems, splits} = route.params;
 
-  // Calculate total bill amount
   const totalBill = billItems.reduce((sum: number, item: any) => {
     const price = parseFloat(item.price || '0');
     const quantity = parseFloat(item.quantity || '0');
     return sum + price * quantity;
   }, 0);
 
-  // Calculate individual shares
   const results = splits.map((split: any) => {
     const percentage = parseFloat(split.percentage || '0');
     const share = (totalBill * percentage) / 100;

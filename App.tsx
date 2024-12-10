@@ -10,8 +10,8 @@ import ResultScreen from './screens/ResultScreen';
 export type RootStackParamList = {
   Home: undefined;
   ReceiptInput: undefined;
-  ManualInput: undefined;
-  SplitDetailsScreen: {numberOfPeople: number};
+  ManualInput: {items: any};
+  SplitDetailsScreen: {numberOfPeople: number; items: any};
   ResultScreen: {billItems: any; splits: any};
 };
 

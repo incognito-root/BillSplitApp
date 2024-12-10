@@ -21,11 +21,18 @@ const SplitDetailsScreen = ({
   route: any;
   navigation: any;
 }) => {
-  const {numberOfPeople} = route.params;
+  const {numberOfPeople, items} = route.params || {items: []};
 
-  const [billItems, setBillItems] = useState([
-    {name: '', quantity: '', price: ''},
-  ]);
+  const [billItems, setBillItems] = useState(
+    items.length > 0
+      ? items.map((item: any) => ({
+          name: item.item,
+          quantity: item.quantity.toString(),
+          price: item.price.toString(),
+        }))
+      : [{name: '', quantity: '', price: ''}],
+  );
+
   const [splits, setSplits] = useState<PersonSplit[]>(
     Array.from({length: numberOfPeople}, (_, i) => ({
       name: `Person ${i + 1}`,
@@ -60,14 +67,13 @@ const SplitDetailsScreen = ({
       return;
     }
 
-    // Navigate to the results screen with bill details and splits
     navigation.navigate('ResultScreen', {billItems, splits});
   };
 
   return (
     <ScrollView contentContainerStyle={styles.container}>
       <Text style={styles.title}>Bill Items</Text>
-      {billItems.map((item, index) => (
+      {billItems.map((item: any, index: number) => (
         <View key={index} style={styles.itemRow}>
           <TextInput
             style={styles.input}
