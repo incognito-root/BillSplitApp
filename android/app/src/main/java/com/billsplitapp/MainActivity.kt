@@ -1,4 +1,4 @@
-package com.billsplitapp
+package com.BillSplitApp
 
 import com.facebook.react.ReactActivity
 import com.facebook.react.ReactActivityDelegate

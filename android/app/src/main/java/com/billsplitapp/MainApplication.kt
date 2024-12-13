@@ -1,4 +1,4 @@
-package com.billsplitapp
+package com.BillSplitApp
 
 import android.app.Application
 import com.facebook.react.PackageList
